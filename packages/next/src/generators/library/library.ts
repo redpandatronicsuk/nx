@@ -11,6 +11,7 @@ import {
 } from '@nrwl/devkit';
 import { Schema } from './schema';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
+import { cypressComponentProject } from '@nrwl/cypress';
 
 export async function libraryGenerator(host: Tree, options: Schema) {
   const name = names(options.name).fileName;
@@ -27,8 +28,21 @@ export async function libraryGenerator(host: Tree, options: Schema) {
   });
   tasks.push(initTask);
 
-  const libTask = await reactLibraryGenerator(host, options);
+  // prevent the React lib generator from making cypress component tests
+  const { addCypress, ...restOptions } = options;
+
+  const libTask = await reactLibraryGenerator(host, restOptions);
   tasks.push(libTask);
+
+  if (addCypress) {
+    const cypressTask = await cypressComponentProject(host, {
+      project: options.name,
+      componentType: 'next',
+      compiler: 'babel', // TODO(caleb): is this supposed to be SWC?
+    });
+    tasks.push(cypressTask);
+    // TODO(caleb): need to generate the default cypress component test
+  }
 
   updateJson(host, joinPathFragments(projectRoot, '.babelrc'), (json) => {
     if (options.style === '@emotion/styled') {

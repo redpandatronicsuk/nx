@@ -1,0 +1,16 @@
+import { defineConfig } from 'cypress';
+import { componentDevServer} from '@nrwl/cypress/plugins/<%= componentType %>';
+
+export default defineConfig({
+  component: {
+    devServer: componentDevServer('tsconfig.cy.json', '<%= compiler %>'),
+    pluginsFile: false,
+    video: true,
+    chromeWebSecurity: false,
+    fixturesFolder: 'cypress/fixtures',
+    specPattern: 'src/**/*.cy.{js,jsx,ts,tsx}',
+    supportFile: 'cypress/support/component.ts',
+    videosFolder: "<%= offsetFromRoot %>dist/cypress/<%= projectRoot %>/videos",
+    screenshotsFolder: "<%= offsetFromRoot %>dist/cypress/<%= projectRoot %>/screenshots",
+  },
+});

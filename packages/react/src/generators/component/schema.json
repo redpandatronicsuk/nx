@@ -131,6 +131,12 @@
     "fileName": {
       "type": "string",
       "description": "Create a component with this file name."
+    },
+    "componentTest": {
+      "type": "boolean",
+      "description": "Add Cypress component test file for component. https://cypress.io",
+      "default": false,
+      "alias": "cy"
     }
   },
   "required": ["name", "project"]

@@ -20,3 +20,8 @@ export function getE2eProjectName(
 export function filePathPrefix(directory: string) {
   return `${names(directory).fileName}`.replace(new RegExp('/', 'g'), '-');
 }
+
+/**
+ * TBD the final name
+ */
+export const CYPRESS_COMPONENT_TEST_TARGET_NAME = 'test-cmp';

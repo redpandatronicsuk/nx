@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cypress Component Project react should create project w/babel 1`] = `
+Object {
+  "executor": "@nrwl/cypress:cypress",
+  "options": Object {
+    "cypressConfig": "libs/cool-lib/cypress.config.ts",
+    "testingType": "component",
+  },
+}
+`;
+
+exports[`Cypress Component Project react should create project w/swc 1`] = `
+Object {
+  "executor": "@nrwl/cypress:cypress",
+  "options": Object {
+    "cypressConfig": "libs/cool-lib/cypress.config.ts",
+    "testingType": "component",
+  },
+}
+`;
+
+exports[`Cypress Component Project validation should not be able to create project with < cypress v9 installed 1`] = `"Cypress version 10 or greater is required "`;
+
+exports[`Cypress Component Project validation should throw an error if cypress project is already created 1`] = `"The project already has a cypress component testing target. Please use the --force flag to overwrite the existing project."`;
