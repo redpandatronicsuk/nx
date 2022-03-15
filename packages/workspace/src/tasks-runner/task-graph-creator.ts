@@ -55,7 +55,10 @@ export class TaskGraphCreator {
         for (const t of tasks) {
           if (
             t.target.project === task.target.project &&
-            t.target.target === dependencyConfig.target
+            t.target.target === dependencyConfig.target &&
+            this.projectGraph.nodes[t.target.project]?.data?.targets[
+              t.target.target
+            ]
           ) {
             graph.dependencies[task.id].push(t.id);
           }
